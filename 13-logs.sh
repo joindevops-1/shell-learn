@@ -24,9 +24,9 @@ fi
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo -e "Installing $2 is ... $G SUCCESS $N" &>>$LOG_FILE | tee -a "$LOG_FILE"
+        echo -e "Installing $2 is ... $G SUCCESS $N"  | tee -a "$LOG_FILE"
     else
-        echo -e "Installing $2 is ... $R FAILURE $N" &>>$LOG_FILE | tee -a "$LOG_FILE"
+        echo -e "Installing $2 is ... $R FAILURE $N"  | tee -a "$LOG_FILE"
         exit 1
     fi
 }
