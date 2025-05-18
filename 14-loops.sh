@@ -33,37 +33,20 @@ VALIDATE(){
     fi
 }
 
+INSTALL_PACKAGE(){
+    dnf list installed $1 &>>$LOG_FILE
+    if [ $? -ne 0 ]
+    then
+        echo "$1 is not installed... going to install it" | tee -a "$LOG_FILE"
+        dnf install $1 -y &>>$LOG_FILE
+        VALIDATE $? "$1" 
+    else
+        echo -e "Nothing to do $1 is $Y already installed... $N" | tee -a "$LOG_FILE"
+    fi
+}
+
 for package in ${PACKAGES[@]}
 do
- echo "package: $package"
+ INSTALL_PACKAGE $package
 done
 
-dnf list installed mysql &>>$LOG_FILE
-if [ $? -ne 0 ]
-then
-    echo "MySQL is not installed... going to install it" | tee -a "$LOG_FILE"
-    dnf install mysql -y &>>$LOG_FILE
-    VALIDATE $? "MySQL"
-else
-    echo -e "$Y MySQL is already installed...Nothing to do $N" | tee -a "$LOG_FILE"
-fi
-
-dnf list installed python3 &>>$LOG_FILE
-if [ $? -ne 0 ]
-then
-    echo "python3 is not installed... going to install it" | tee -a "$LOG_FILE"
-    dnf install python3 -y &>>$LOG_FILE
-    VALIDATE $? "python3"
-else
-    echo -e "$Y python3 is already installed...Nothing to do $N" | tee -a "$LOG_FILE"
-fi
-
-dnf list installed nginx &>>$LOG_FILE
-if [ $? -ne 0 ]
-then
-    echo "nginx is not installed... going to install it" | tee -a "$LOG_FILE"
-    dnf install nginx -y &>>$LOG_FILE
-    VALIDATE $? "nginx" 
-else
-    echo -e "$Y nginx is already installed...Nothing to do $N" | tee -a "$LOG_FILE"
-fi
