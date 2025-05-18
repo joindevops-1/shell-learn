@@ -4,7 +4,7 @@ USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
-Y="\e[0m"
+N="\e[0m"
 
 if [ $USERID -ne 0 ]
 then
@@ -18,9 +18,9 @@ fi
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo "Installing $2 is ... $G SUCCESS $N"
+        echo -e "Installing $2 is ... $G SUCCESS $N"
     else
-        echo "Installing $2 is ... $R FAILURE $N"
+        echo -e "Installing $2 is ... $R FAILURE $N"
         exit 1
     fi
 }
@@ -32,7 +32,7 @@ then
     dnf install mysql -y
     VALIDATE $? "MySQL"
 else
-    echo "MySQL is already installed...Nothing to do"
+    echo -e "$Y MySQL is already installed...Nothing to do $N"
 fi
 
 dnf list installed python3
