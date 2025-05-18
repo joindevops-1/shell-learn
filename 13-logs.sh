@@ -9,9 +9,8 @@ LOGS_FOLDER=/var/log/shellscript-logs
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
-echo "Script started executing at: $date" &>>$LOG_FILE
-
 mkdir -p $LOG_FILE
+echo "Script started executing at: $date" &>>$LOG_FILE
 
 if [ $USERID -ne 0 ]
 then
