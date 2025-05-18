@@ -11,7 +11,7 @@ LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
 echo "Script started executing at: $date" &>>$LOG_FILE
 
-mkdir -p /var/log/shellscript-logs
+mkdir -p $LOG_FILE
 
 if [ $USERID -ne 0 ]
 then
