@@ -11,6 +11,8 @@ LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
 echo "Script started executing at: $date" &>>$LOG_FILE
 
+mkdir -p /var/log/shellscript-logs
+
 if [ $USERID -ne 0 ]
 then
     echo -e "$R ERROR:: $N Please run this script with root access" &>>$LOG_FILE
