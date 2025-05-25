@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DISK_USAGE=$(df -hT | grep -vE 'devtmpfs|Filesystem' | awk '{print $6}' | tr -d '%')
+DISK_USAGE=$(df -hT | grep -vE 'devtmpfs|Filesystem')
 DISK_THRESHOLD=1
 message=""
 
